@@ -7,7 +7,7 @@ import {
   removeTask,
   updateOrCreateTask,
   updateTask,
-} from '../controller/tasks.js';
+} from '../controllers/tasks.js';
 
 const tasksRouter = Router();
 
@@ -19,7 +19,7 @@ tasksRouter.post('/tasks', addTask);
 
 tasksRouter.delete('/tasks/:id', removeTask);
 
-tasksRouter.patch('/task/:id', updateTask);
+tasksRouter.patch('/tasks/:id', updateTask);
 
 tasksRouter.put('/tasks/:id', updateOrCreateTask);
 
