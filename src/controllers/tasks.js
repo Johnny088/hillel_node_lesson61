@@ -56,6 +56,8 @@ export const updateTask = async (req, res) => {
 export const updateOrCreateTask = async (req, res) => {
   const { id } = req.params;
   const body = req.body;
-  const { isUpdated, data } = await updateTaskService(id, body);
+  const { isUpdated, data } = await updateTaskService(id, body, {
+    upsert: true,
+  });
   res.status(isUpdated ? 200 : 201).json(data);
 };
