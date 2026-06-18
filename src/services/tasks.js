@@ -14,7 +14,7 @@ export const updateTaskService = async (id, data, options) => {
     includeResultMetadata: true,
     ...options,
   });
-  if (!result) {
+  if (!result.value) {
     return null;
   }
   return {
