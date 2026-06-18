@@ -1,1 +1,1 @@
-export const idNotFound = { message: "such id isn't found" };
+export const idNotFound = "such id isn't found";
