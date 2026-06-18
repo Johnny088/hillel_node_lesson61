@@ -12,6 +12,8 @@ export const updateTaskService = async (id, data, options) => {
   const result = await Task.findByIdAndUpdate(id, data, {
     returnDocument: 'after',
     includeResultMetadata: true,
+    runValidators: true,
+    setDefaultsOnInsert: true,
     ...options,
   });
   if (!result.value) {
