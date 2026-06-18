@@ -6,7 +6,7 @@ import {
   removeTaskService,
   updateTaskService,
 } from '../services/tasks.js';
-import { idNotFound } from '../constants.js';
+import { ID_NOT_FOUND_MSG } from '../constants.js';
 
 export const getTasks = async (req, res) => {
   const tasks = await getTasksService();
@@ -18,7 +18,7 @@ export const getTaskById = async (req, res) => {
   const task = await getTaskByIdService(id);
 
   if (!task) {
-    throw createHttpError(404, idNotFound);
+    throw createHttpError(404, ID_NOT_FOUND_MSG);
   }
 
   res.json(task);
@@ -36,7 +36,7 @@ export const removeTask = async (req, res) => {
 
   const task = await removeTaskService(id);
   if (!task) {
-    throw createHttpError(404, idNotFound);
+    throw createHttpError(404, ID_NOT_FOUND_MSG);
   }
 
   res.json(task);
@@ -48,7 +48,7 @@ export const updateTask = async (req, res) => {
   const result = await updateTaskService(id, body);
 
   if (!result) {
-    throw createHttpError(404, idNotFound);
+    throw createHttpError(404, ID_NOT_FOUND_MSG);
   }
   res.json(result.data);
 };

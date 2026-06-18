@@ -1,5 +1,6 @@
 import { Router } from 'express';
-import 'dotenv/config';
+import { celebrate } from 'celebrate';
+
 import {
   addTask,
   getTaskById,
@@ -8,19 +9,20 @@ import {
   updateOrCreateTask,
   updateTask,
 } from '../controllers/tasks.js';
+import { createTasksSchema, updateTasksSchema } from '../validation/tasks.js';
 
 const tasksRouter = Router();
 
 tasksRouter.get('/', getTasks);
 
-tasksRouter.get('/:id', getTaskById);
+tasksRouter.post('/', celebrate(createTasksSchema), addTask);
 
-tasksRouter.post('/', addTask);
+tasksRouter.get('/:id', getTaskById);
 
 tasksRouter.delete('/:id', removeTask);
 
-tasksRouter.patch('/:id', updateTask);
+tasksRouter.patch('/:id', celebrate(updateTasksSchema), updateTask);
 
-tasksRouter.put('/:id', updateOrCreateTask);
+tasksRouter.put('/:id', celebrate(createTasksSchema), updateOrCreateTask);
 
 export default tasksRouter;

@@ -1,4 +1,5 @@
 import { Schema, model } from 'mongoose';
+import { PRIORITY_STATE } from '../../constants.js';
 
 const tasksSchema = new Schema(
   {
@@ -12,7 +13,7 @@ const tasksSchema = new Schema(
     },
     priority: {
       type: String,
-      enum: ['low', 'medium', 'high'],
+      enum: PRIORITY_STATE,
       required: true,
     },
     progress: {

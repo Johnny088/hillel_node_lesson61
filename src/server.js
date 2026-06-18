@@ -4,6 +4,7 @@ import { connectDb } from './db/connectDb.js';
 import tasksRouter from './routers/tasks.js';
 import { notFoundHandler } from './middlewares/notFoundHandler.js';
 import { errorHandler } from './middlewares/errorHandler.js';
+import { errors } from 'celebrate';
 
 const PORT = process.env.PORT;
 
@@ -14,6 +15,7 @@ app.use('/tasks', tasksRouter);
 
 app.use(notFoundHandler);
 
+app.use(errors());
 app.use(errorHandler);
 
 await connectDb();
