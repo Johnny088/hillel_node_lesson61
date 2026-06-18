@@ -13,7 +13,6 @@ export const updateTaskService = async (id, data, options) => {
     returnDocument: 'after',
     includeResultMetadata: true,
     runValidators: true,
-    setDefaultsOnInsert: true,
     ...options,
   });
   if (!result.value) {
