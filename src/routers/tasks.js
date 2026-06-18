@@ -11,13 +11,14 @@ import {
 } from '../controllers/tasks.js';
 import {
   createTasksSchema,
+  getTasksSchema,
   idSchema,
   updateTasksSchema,
 } from '../validation/tasks.js';
 
 const tasksRouter = Router();
 
-tasksRouter.get('/', getTasks);
+tasksRouter.get('/', celebrate(getTasksSchema), getTasks);
 
 tasksRouter.get('/:id', celebrate(idSchema), getTaskById);
 

@@ -5,6 +5,17 @@ import { isValidObjectId } from 'mongoose';
 const validateId = (id, utils) =>
   isValidObjectId(id) ? id : utils.message('Invalid Id');
 
+export const getTasksSchema = {
+  [Segments.QUERY]: Joi.object({
+    page: Joi.number().integer().min(1).default(1),
+    limit: Joi.number().integer().min(5).max(20).default(5),
+    sortBy: Joi.string()
+      .valid('title', 'completed', 'priority', 'progress')
+      .default('title'),
+    sortOrder: Joi.string().valid('asc', 'desc').default('asc'),
+  }),
+};
+
 export const createTasksSchema = {
   [Segments.BODY]: Joi.object({
     title: Joi.string().min(10).required().messages({

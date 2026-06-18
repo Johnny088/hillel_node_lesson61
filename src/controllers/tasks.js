@@ -9,8 +9,11 @@ import {
 import { ID_NOT_FOUND_MSG } from '../constants.js';
 
 export const getTasks = async (req, res) => {
-  const tasks = await getTasksService();
-  res.json(tasks);
+  const { page, limit, sortBy, sortOrder } = req.query;
+
+  const response = await getTasksService({ page, limit, sortBy, sortOrder });
+
+  res.json(response);
 };
 
 export const getTaskById = async (req, res) => {
