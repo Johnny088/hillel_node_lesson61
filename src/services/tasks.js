@@ -1,11 +1,23 @@
 import { Task } from '../db/models/Tasks.js';
 
-export const getTasksService = async ({ page, limit, sortBy, sortOrder }) => {
+export const getTasksService = async ({
+  page,
+  limit,
+  sortBy,
+  sortOrder,
+  completed,
+}) => {
   const skip = (page - 1) * limit;
 
+  const statusQuery = Task.find();
+
+  if (completed !== undefined) {
+    statusQuery.where('completed').equals(completed);
+  }
+
   const [totalCount, tasks] = await Promise.all([
-    Task.find().countDocuments(),
-    Task.find()
+    statusQuery.clone().countDocuments(),
+    statusQuery
       .skip(skip)
       .limit(limit)
       .sort({ [sortBy]: sortOrder }),
