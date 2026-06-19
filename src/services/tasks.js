@@ -24,7 +24,6 @@ export const getTasksService = async ({
   ]);
 
   const totalPages = Math.ceil(totalCount / limit);
-  console.log(status);
 
   return { tasks, totalCount, totalPages };
 };
