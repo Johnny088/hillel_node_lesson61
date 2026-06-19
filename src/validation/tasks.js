@@ -17,6 +17,7 @@ export const getTasksSchema = {
     iscompleted: Joi.boolean(),
     minProgress: Joi.number().positive().max(100),
     maxProgress: Joi.number().positive().max(100),
+    search: Joi.string(),
   }),
 };
 

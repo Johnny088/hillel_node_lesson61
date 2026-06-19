@@ -31,4 +31,6 @@ const tasksSchema = new Schema(
   { versionKey: false, timestamps: true },
 );
 
+// tasksSchema.index({ title: 'text' });
+
 export const Task = model('Task', tasksSchema);

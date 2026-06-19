@@ -9,6 +9,7 @@ export const getTasksService = async ({
   iscompleted,
   minProgress,
   maxProgress,
+  search,
 }) => {
   const skip = (page - 1) * limit;
 
@@ -28,6 +29,12 @@ export const getTasksService = async ({
 
   if (maxProgress) {
     tasksQuery.where('progress').lte(maxProgress);
+  }
+
+  if (search && search.trim()) {
+    tasksQuery.where({
+      title: { $regex: search, $options: 'i' },
+    });
   }
 
   const [totalCount, tasks] = await Promise.all([

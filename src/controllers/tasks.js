@@ -18,6 +18,7 @@ export const getTasks = async (req, res) => {
     iscompleted,
     minProgress,
     maxProgress,
+    search,
   } = req.query;
 
   const response = await getTasksService({
@@ -29,6 +30,7 @@ export const getTasks = async (req, res) => {
     iscompleted,
     minProgress,
     maxProgress,
+    search,
   });
 
   res.json(response);
