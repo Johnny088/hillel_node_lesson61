@@ -6,18 +6,23 @@ export const getTasksService = async ({
   sortBy,
   sortOrder,
   status,
+  iscompleted,
 }) => {
   const skip = (page - 1) * limit;
 
-  const statusQuery = Task.find();
+  const tasksQuery = Task.find();
 
   if (status) {
-    statusQuery.where('status').equals(status);
+    tasksQuery.where('status').equals(status);
+  }
+
+  if (iscompleted !== undefined) {
+    tasksQuery.where('completed').equals(iscompleted);
   }
 
   const [totalCount, tasks] = await Promise.all([
-    statusQuery.clone().countDocuments(),
-    statusQuery
+    tasksQuery.clone().countDocuments(),
+    tasksQuery
       .skip(skip)
       .limit(limit)
       .sort({ [sortBy]: sortOrder }),
