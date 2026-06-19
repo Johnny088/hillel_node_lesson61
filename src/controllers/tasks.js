@@ -9,15 +9,16 @@ import {
 import { ID_NOT_FOUND_MSG } from '../constants.js';
 
 export const getTasks = async (req, res) => {
-  const { page, limit, sortBy, sortOrder, completed } = req.query;
+  const { page, limit, sortBy, sortOrder, status } = req.query;
 
   const response = await getTasksService({
     page,
     limit,
     sortBy,
     sortOrder,
-    completed,
+    status,
   });
+  console.log(`controller ${status}`);
 
   res.json(response);
 };

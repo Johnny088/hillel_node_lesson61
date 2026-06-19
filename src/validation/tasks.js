@@ -1,5 +1,5 @@
 import { Joi, Segments } from 'celebrate';
-import { PRIORITY_STATE } from '../constants.js';
+import { PRIORITY_STATE, STATUS } from '../constants.js';
 import { isValidObjectId } from 'mongoose';
 
 const validateId = (id, utils) =>
@@ -13,7 +13,7 @@ export const getTasksSchema = {
       .valid('title', 'completed', 'priority', 'progress')
       .default('title'),
     sortOrder: Joi.string().valid('asc', 'desc').default('asc'),
-    completed: Joi.boolean(),
+    status: Joi.string().valid(...STATUS),
   }),
 };
 
@@ -27,6 +27,7 @@ export const createTasksSchema = {
       .valid(...PRIORITY_STATE)
       .required(),
     progress: Joi.number().min(0).max(100).default(0),
+    status: Joi.string().valid(...STATUS),
   }),
 };
 
@@ -36,6 +37,7 @@ export const updateTasksSchema = {
     completed: Joi.boolean().default(false),
     priority: Joi.string().valid(...PRIORITY_STATE),
     progress: Joi.number().min(0).max(100).default(0),
+    status: Joi.string().valid(...STATUS),
   }).min(1),
   [Segments.PARAMS]: Joi.object({
     id: Joi.string().custom(validateId).required(),

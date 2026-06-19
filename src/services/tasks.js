@@ -5,14 +5,14 @@ export const getTasksService = async ({
   limit,
   sortBy,
   sortOrder,
-  completed,
+  status,
 }) => {
   const skip = (page - 1) * limit;
 
   const statusQuery = Task.find();
 
-  if (completed !== undefined) {
-    statusQuery.where('completed').equals(completed);
+  if (status) {
+    statusQuery.where('status').equals(status);
   }
 
   const [totalCount, tasks] = await Promise.all([
@@ -24,6 +24,7 @@ export const getTasksService = async ({
   ]);
 
   const totalPages = Math.ceil(totalCount / limit);
+  console.log(status);
 
   return { tasks, totalCount, totalPages };
 };

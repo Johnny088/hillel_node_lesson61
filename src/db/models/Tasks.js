@@ -1,5 +1,5 @@
 import { Schema, model } from 'mongoose';
-import { PRIORITY_STATE } from '../../constants.js';
+import { PRIORITY_STATE, STATUS } from '../../constants.js';
 
 const tasksSchema = new Schema(
   {
@@ -21,6 +21,11 @@ const tasksSchema = new Schema(
       min: 0,
       max: 100,
       default: 0,
+    },
+    status: {
+      type: String,
+      enum: STATUS,
+      default: 'new',
     },
   },
   { versionKey: false, timestamps: true },
