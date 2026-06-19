@@ -18,7 +18,6 @@ export const getTasks = async (req, res) => {
     sortOrder,
     status,
   });
-  console.log(`controller ${status}`);
 
   res.json(response);
 };
