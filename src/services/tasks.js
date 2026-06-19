@@ -7,6 +7,8 @@ export const getTasksService = async ({
   sortOrder,
   status,
   iscompleted,
+  minProgress,
+  maxProgress,
 }) => {
   const skip = (page - 1) * limit;
 
@@ -18,6 +20,14 @@ export const getTasksService = async ({
 
   if (iscompleted !== undefined) {
     tasksQuery.where('completed').equals(iscompleted);
+  }
+
+  if (minProgress) {
+    tasksQuery.where('progress').gte(minProgress);
+  }
+
+  if (maxProgress) {
+    tasksQuery.where('progress').lte(maxProgress);
   }
 
   const [totalCount, tasks] = await Promise.all([

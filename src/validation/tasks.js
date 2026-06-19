@@ -15,6 +15,8 @@ export const getTasksSchema = {
     sortOrder: Joi.string().valid('asc', 'desc').default('asc'),
     status: Joi.string().valid(...STATUS),
     iscompleted: Joi.boolean(),
+    minProgress: Joi.number().positive().max(100),
+    maxProgress: Joi.number().positive().max(100),
   }),
 };
 
