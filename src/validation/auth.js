@@ -4,6 +4,7 @@ export const signUpSchema = {
   [Segments.BODY]: Joi.object({
     userName: Joi.string().min(2),
     email: Joi.string().email().required(),
+    password: Joi.string().required(),
   }),
 };
 

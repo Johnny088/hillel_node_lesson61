@@ -5,12 +5,17 @@ import tasksRouter from './routers/tasks.js';
 import { notFoundHandler } from './middlewares/notFoundHandler.js';
 import { errorHandler } from './middlewares/errorHandler.js';
 import { errors } from 'celebrate';
+import cookieParser from 'cookie-parser';
+import authRouter from './routers/auth.js';
 
 const PORT = process.env.PORT;
 
 const app = express();
 
 app.use(express.json());
+app.use(cookieParser());
+
+app.use('/auth', authRouter);
 app.use('/tasks', tasksRouter);
 
 app.use(notFoundHandler);
