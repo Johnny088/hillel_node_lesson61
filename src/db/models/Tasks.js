@@ -27,6 +27,10 @@ const tasksSchema = new Schema(
       enum: STATUS,
       default: 'new',
     },
+    ownerId: {
+      type: Schema.Types.ObjectId,
+      required: true,
+    },
   },
   { versionKey: false, timestamps: true },
 );

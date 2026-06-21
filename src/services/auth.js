@@ -24,3 +24,5 @@ export const deleteSessionById = sessionId =>
   Session.deleteOne({ _id: sessionId });
 
 export const findSessionById = id => Session.findById(id);
+
+export const findUserById = id => User.findById(id);
