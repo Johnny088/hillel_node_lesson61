@@ -19,6 +19,4 @@ const userSchema = new Schema(
   { versionKey: false, timestamps: true },
 );
 
-// userSchema.index({ email: 1 });
-
 export const User = model('User', userSchema);
