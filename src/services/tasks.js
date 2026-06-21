@@ -51,16 +51,16 @@ export const getTasksService = async ({
   return { tasks, totalCount, totalPages };
 };
 
-export const getTaskByIdService = ({ id, ownerId }) =>
+export const getTaskByIdService = (id, ownerId) =>
   Task.findOne({ _id: id, ownerId });
 
 export const addNewTaskService = data => Task.create(data);
 
 export const removeTaskService = ({ id, ownerId }) =>
-  Task.findOneAndDelete({ ownerId, _id: id });
+  Task.findOneAndDelete({ _id: id, ownerId });
 
 export const updateTaskService = async (id, ownerId, data, options = {}) => {
-  const result = await Task.findOneAndUpdate(id, ownerId, data, {
+  const result = await Task.findOneAndUpdate({ _id: id, ownerId }, data, {
     returnDocument: 'after',
     includeResultMetadata: true,
     ...options,
