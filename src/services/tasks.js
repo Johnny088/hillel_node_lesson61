@@ -6,7 +6,7 @@ export const getTasksService = async ({
   sortBy,
   sortOrder,
   status,
-  iscompleted,
+  isCompleted,
   minProgress,
   maxProgress,
   search,
@@ -20,8 +20,8 @@ export const getTasksService = async ({
     tasksQuery.where('status').equals(status);
   }
 
-  if (iscompleted !== undefined) {
-    tasksQuery.where('completed').equals(iscompleted);
+  if (isCompleted !== undefined) {
+    tasksQuery.where('completed').equals(isCompleted);
   }
 
   if (minProgress) {
