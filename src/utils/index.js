@@ -8,9 +8,15 @@ export const setCookies = (session, res) => {
   };
   res.cookie('sessionId', session._id, { ...options, maxAge: TWO_DAYS });
 
-  res.cookie('accessToken', session.accessToken, { maxAge: TWENTY_MINUTES });
+  res.cookie('accessToken', session.accessToken, {
+    ...options,
+    maxAge: TWENTY_MINUTES,
+  });
 
-  res.cookie('refreshToken', session.refreshToken, { maxAge: TWO_DAYS });
+  res.cookie('refreshToken', session.refreshToken, {
+    ...options,
+    maxAge: TWO_DAYS,
+  });
 };
 
 export const clearCookies = res => {
