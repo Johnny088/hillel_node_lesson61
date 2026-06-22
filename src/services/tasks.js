@@ -56,7 +56,7 @@ export const getTaskByIdService = (id, ownerId) =>
 
 export const addNewTaskService = data => Task.create(data);
 
-export const removeTaskService = ({ id, ownerId }) =>
+export const removeTaskService = (id, ownerId) =>
   Task.findOneAndDelete({ _id: id, ownerId });
 
 export const updateTaskService = async (id, ownerId, data, options = {}) => {
