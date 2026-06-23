@@ -1,9 +1,6 @@
 import { Joi, Segments } from 'celebrate';
 import { PRIORITY_STATE, STATUS } from '../constants.js';
-import { isValidObjectId } from 'mongoose';
-
-const validateId = (id, utils) =>
-  isValidObjectId(id) ? id : utils.message('Invalid Id');
+import { validateId } from './general.js';
 
 export const getTasksSchema = {
   [Segments.QUERY]: Joi.object({
@@ -43,12 +40,6 @@ export const updateTasksSchema = {
     progress: Joi.number().min(0).max(100).default(0),
     status: Joi.string().valid(...STATUS),
   }).min(1),
-  [Segments.PARAMS]: Joi.object({
-    id: Joi.string().custom(validateId).required(),
-  }),
-};
-
-export const idSchema = {
   [Segments.PARAMS]: Joi.object({
     id: Joi.string().custom(validateId).required(),
   }),

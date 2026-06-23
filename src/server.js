@@ -3,12 +3,11 @@ import 'dotenv/config';
 import { connectDb } from './db/connectDb.js';
 import authRouter from './routers/auth.js';
 import tasksRouter from './routers/tasks.js';
-import contactRouter from './routers/contacts.js';
 import { notFoundHandler } from './middlewares/notFoundHandler.js';
 import { errorHandler } from './middlewares/errorHandler.js';
 import { errors } from 'celebrate';
 import cookieParser from 'cookie-parser';
-// import { parseFile } from './middlewares/fileHandler.js';
+import usersRouter from './routers/users.js';
 
 const PORT = process.env.PORT;
 
@@ -19,9 +18,8 @@ app.use(cookieParser());
 
 app.use('/auth', authRouter);
 app.use('/tasks', tasksRouter);
-app.use('/cover', contactRouter);
+app.use('/users', usersRouter);
 
-// app.use(parseFile);
 app.use(notFoundHandler);
 
 app.use(errors());

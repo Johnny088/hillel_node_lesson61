@@ -12,10 +12,10 @@ import {
 import {
   createTasksSchema,
   getTasksSchema,
-  idSchema,
   updateTasksSchema,
 } from '../validation/tasks.js';
 import { checkToken } from '../middlewares/checkToken.js';
+import { idSchema } from '../validation/general.js';
 
 const tasksRouter = Router();
 
