@@ -7,12 +7,7 @@ export const updateUserPhoto = async (req, res) => {
     throw createHttpError(404, 'there is no file');
   }
 
-  const { id } = req.params;
-  const ownerId = req.user._id;
-
-  if (id !== ownerId.toString()) {
-    throw createHttpError(400, 'bad request');
-  }
+  const id = req.user._id;
 
   const { secure_url } = await saveFile(req.file.buffer);
 

@@ -9,5 +9,5 @@ export const updateUsersPhotoService = async (id, secure_url) => {
   if (!result) {
     return null;
   }
-  return result;
+  return result.avatarUrl;
 };
